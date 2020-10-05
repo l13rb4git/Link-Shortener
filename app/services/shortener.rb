@@ -18,11 +18,14 @@ class Shortener
     end
   end
 
+  def generate_short_link
+    link_model.new(original_url: url, lookup_code: lookup_code)
+  end
+
+  private 
+
   def generate_code i
     Digest::SHA256.hexdigest(url)[i..(i + 6)]
   end
 
-  def generate_short_link
-    link_model.new(original_url: url, lookup_code: lookup_code)
-  end
 end
