@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2020_10_05_161815) do
 
   create_table "links", force: :cascade do |t|
     t.string "lookup_code"
-    t.string "orginal_url"
+    t.string "original_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
