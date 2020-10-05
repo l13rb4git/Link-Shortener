@@ -26,4 +26,20 @@ RSpec.describe Link, type: :model do
 
     expect(link.valid?).to be(false)
   end
+
+  it 'is invalid if the lookup_code already exists' do
+    link_1 = Link.new(
+      original_url: "https://www.website.com/videos/first-video.mp4",
+      lookup_code: "1234567"
+    )
+
+    link_1.save
+
+    link_2 = Link.new(
+      original_url: "https://www.website.com/videos/first-video.mp4",
+      lookup_code: "1234567"
+    )
+
+    expect(link_2.valid?).to be(false)
+  end
 end
