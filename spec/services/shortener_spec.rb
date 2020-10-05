@@ -39,6 +39,8 @@ RSpec.describe Shortener do
     link = shortener.generate_short_link
     expect(link.valid?).to be(true)
 
+    link.save
+
     link_2 = shortener.generate_short_link
     expect(link_2.valid?).to be(true)
   end
