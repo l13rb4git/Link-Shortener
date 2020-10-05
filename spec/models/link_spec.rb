@@ -11,6 +11,14 @@ RSpec.describe Link, type: :model do
     expect(link.valid?).to be(true)
   end
 
+  it 'is invalid if it only has an lookup code and not a original URL' do
+    link = Link.new(
+      lookup_code: "1234567",
+    )
+
+    expect(link.valid?).to be(false)
+  end
+
   it 'is invalid if it only has an original URL and not a lookup code' do
     link = Link.new(
       original_url: "https://www.website.com/videos/first-video.mp4",
