@@ -1,3 +1,2 @@
 class Link < ApplicationRecord
-
 end
