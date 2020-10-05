@@ -3,6 +3,7 @@ require 'digest/sha2'
 
 class Shortener
   attr_reader :url, :link_model
+
   def initialize(url, link_model: Link)
     @url = url
     @link_model = link_model
@@ -11,10 +12,14 @@ class Shortener
   def lookup_code
     i = 0
     loop do
-      code = Digest::SHA256.hexdigest(url)[i..(i + 6)]
+      code = generate_code(i)
       break code unless link_model.exists?(code)
       i += 1
     end
+  end
+
+  def generate_code i
+    Digest::SHA256.hexdigest(url)[i..(i + 6)]
   end
 
   def generate_short_link
