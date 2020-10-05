@@ -35,8 +35,11 @@ RSpec.describe Shortener do
   it 'generates a Link record with a unique lookup code' do
     url = "https://www.website.com/videos/first-video.mp4"
     shortener = Shortener.new(url)
-    link = shortener.generate_short_link
 
+    link = shortener.generate_short_link
     expect(link.valid?).to be(true)
+
+    link_2 = shortener.generate_short_link
+    expect(link_2.valid?).to be(true)
   end
 end
