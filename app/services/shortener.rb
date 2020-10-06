@@ -1,4 +1,4 @@
-require 'digest/sha2'
+require 'securerandom'
 
 
 class Shortener
@@ -10,11 +10,9 @@ class Shortener
   end
 
   def lookup_code
-    i = 0
     loop do
-      code = generate_code(i)
+      code = generate_code
       break code unless link_model.exists?(code)
-      i += 1
     end
   end
 
@@ -24,8 +22,8 @@ class Shortener
 
   private 
 
-  def generate_code i
-    Digest::SHA256.hexdigest(url)[i..(i + 6)]
+  def generate_code
+    SecureRandom.base64(12)[0..6]
   end
 
 end
