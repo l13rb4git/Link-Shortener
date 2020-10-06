@@ -9,6 +9,7 @@ class Shortener
     @link_model = link_model
   end
 
+  # TODO: Delete this method if it inst in use #
   def lookup_code
     loop do
       code = generate_code
@@ -17,7 +18,7 @@ class Shortener
   end
 
   def generate_short_link
-    link_model.new(original_url: url, lookup_code: lookup_code)
+    link_model.new(original_url: url, lookup_code: generate_code)
   end
 
   private 
