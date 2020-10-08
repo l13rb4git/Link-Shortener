@@ -3,7 +3,12 @@ class LinksController < ApplicationController
   def create    
     shortener = Shortener.new(link_params[:original_url])
     @link = shortener.generate_short_link
-    @link.save
+    
+    respond_to do |format|
+      if @link.save
+        format.js
+      end
+    end
   end
 
   private
