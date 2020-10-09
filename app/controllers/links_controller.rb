@@ -7,9 +7,9 @@ class LinksController < ApplicationController
     respond_to do |format|
       if @link.save
         format.js
-        format.html do
-          redirect_to format.js
-        end
+        format.html { redirect_to format.js }
+      else
+        format.js { render 'error.js.erb' }
       end
     end
   end
